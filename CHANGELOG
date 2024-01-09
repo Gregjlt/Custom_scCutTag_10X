@@ -1,0 +1,163 @@
+
+***********************************
+CHANGES IN VERSION 0.0.4.0
+
+NEW FEATURES
+
+   o As the NGS platform doesn't do 4 dark cycles at the start of constant read 2, the
+position of cell barcodes indexes, linker and genomic DNA have shifted 4-bp leftwards.
+   o New run_multiple_sample.sh script that reads in a sample sheet to launch multiple samples
+
+
+
+
+***********************************
+CHANGES IN VERSION 0.0.3.5
+
+NEW FEATURES
+
+   o After seeing some strange peaks in the profiles of several samples, we discovered that 
+multimappers were not properly removed. In order to remove the multimappers correctly,
+we changed STAR mapping parameters and added filtering of ENCODE black regions v2. A pdf file
+is resuming this process and explaining the choice of mapping options.
+
+
+
+***********************************
+CHANGES IN VERSION 0.0.3.4
+
+NEW FEATURES
+
+   o New handling of CONFIG files (GetConf function) based on EWOK pipeline
+   (https://gitlab.curie.fr/data-analysis/ewok/tree/devel). A file "species_design_configs.csv"
+   contains different combinations of parameters (Genome build/Beads) and user build a custom
+   CONFIG file using ./schip_processing.sh GetConf [options] based on 'CONFIG_TEMPLATE' in a 'safer' way.
+   User can override some parameters (just target bed for now) to customize safely the pipe.
+
+
+***********************************
+CHANGES IN VERSION 0.0.3.3
+
+NEW FEATURES
+
+   o CONFIG option : UNBOUND = TRUE/FALSE - run the pipelines without removing PCR and RT in the addBarcode_rmDup
+   function.
+
+   o Downstream analysis using a dedicated R pipeline. (https://gitlab.curie.fr/Vallot_lab/R_automated_scripts/blob/master/scChIPseq_analysis/R_scChIP_seq_analysis.R)
+   This creates a default-parameter analysis of single matrices (QC & filtering, dimension reduction, correlation
+    filtering, unsupervised clustering of cells, [peak calling] (optional), differential analysis, GSEA).
+   
+   CONFIG option for downstream analysis : N_CLUSTER = 3
+                                  MIN_PERCENT_COR = 1 
+                                  MIN_COV = 1000
+
+            
+ 
+
+***********************************
+CHANGES IN VERSION 0.0.3.3
+
+NEW FEATURES
+
+   o Run in paired-end mode with STAR for genome mapping using "--alignEndsType 
+   EndToEnd --alignIntronMax 1 --alignMatesGapMax 450 --limitGenomeGenerateRAM 
+   25000000000 --outSAMunmapped Within" 
+
+   o Bowtie2 index mapping - only works for Curie Beads now ! :
+   
+        - Bowtie2 index built for each barcode index (B,C,D) containing the 
+        previous & following 4-bp links : (indexes B are 20bp-long (seq + link)
+        , indexes C and D are 24bp-long (link + seq + link))
+        - Indexes are extracted from R2 :
+            -index B : 1-16
+            -index C : 21-36
+            -index D : 41-56
+            
+        -Bowtie2 mapping allowing only 2 mm/indels using "-N 1 -L 8 --rdg 0,7
+        --rfg 0,7 --mp 7,7 --ignore-quals --score-min L,0,-1 -t --no-unal --no-hd"
+        on each index
+        
+        - Join the 3 indexes together to reform complete barcodes
+        
+        - Barcodes are now in the form "BC"[1-96][1-96][1-96]
+
+   o addBarcode_rmDup function first removes PCR duplicates (same R1, same R2,
+   same BC) then removes RT duplicates (different R1, same R2, same BC)
+   
+   o addBarcode_rmDup and rmDup function creates .count files counting the reads
+   in each BC and sorted .bam files at every step 
+   
+   o A 'TMP_DIR' variable has been introduced in the CONFIG files - necessary
+   for the sorting of barcodes in the addBarcode_rmDup function
+   
+   o "add_info_to_log" function to create 
+   SAMPLE_scChIPseq_logs.txt used by future multiqc report
+   
+
+
+BUG_FIXES
+
+   o Barcode count is now correctly calculated (make_count function)
+   
+***********************************
+CHANGES IN VERSION 0.0.3.2
+
+NEW FEATURES
+
+   o Run in paired-end mode, trimming R2 for genome mapping
+using the LENGTH_BARCODE_INDEX parameter
+
+   o Bowtie genome PE mapping using "--try-hard --allow-contain -X 450  
+--chunkmbs 200" outputs maximum # mapped reads
+
+   o New bash addBarcode_rmDup function to remove duplicates
+using R2 end 
+
+
+
+BUG_FIXES
+
+   o Fix bug in matrix counts
+
+
+***********************************
+CHANGES IN VERSION 0.0.3
+
+NEW FEATURES
+
+   o Generate bigWig tracks
+
+   o Update rmdup function to deal with reads orientation
+
+BUG_FIXES
+
+   o Fix bug in matrix counts
+
+
+***********************************
+CHANGES IN VERSION 0.0.2
+
+NEW FEATURES
+
+   o Double filtering of reads per barcode, before and after rm dup.
+     Two different thresholds can be defined in the CONFIG file
+
+BUG_FIXES
+
+   o Fix bug in matrix row names
+
+***********************************
+CHANGES IN VERSION 0.0.1
+
+NEW FEATURES
+
+   o First version of the single-cell ChIP-seq pipeline
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+   o Add BIN_SIZE in configraiton file
+
+BUG_FIXES
+
+
+
