@@ -415,7 +415,7 @@ prefix=$3
     echo -e "Logs: $log"
     echo
 
-start_index_1=1
+start_index_1=9
 size_index=16
 
 ##Extract 1 barcode from reads : 1 - 16 = index 1
