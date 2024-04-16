@@ -1,0 +1,78 @@
+Bonjour Greg!
+COMMAND Fastq+Barcoding+Trimming+Mapping+Filtering+Coverage+Counting+MQC+R_analysis 
+/data/kdi_prod/dataset/2018375/export/user/fastqs/T3_F8174_mm_multi_RNA_m11y23/ | /data/tmp/gjouault/results/CONFIG_MOUSE_scCutTag_10X_H3K27ME3_T3_F8174_mm_multi_RNA_m11y23 | /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1 | T3_F8174_mm_multi_RNA_m11y23_H3K4me1
+
+Starting on Thu Jan 11 15:19:19 CET 2024 scCutTag 10X pipeline ! Results are available in /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1
+
+Running pipeline for sample T3_F8174_mm_multi_RNA_m11y23_H3K4me1
+Concatenating Input Fastqs from 10X... 
+
+Concatenating Fastqs From 10X together...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/concatenate_fastqs_from_10X.log
+
+Barcoding... 
+
+Running Bowtie2 index (barcode) mapping ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/barcode/index_mapping_bowtie2.log
+
+Mapping using STAR... 
+
+Running STAR mapping ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/genome/mapping_star.log
+
+Filtering... 
+
+Running add_cellBarcode_func...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/add_cellBarcode_func.log
+
+Running remove_PCR_RT_duplicates_func...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/remove_PCR_RT_duplicates_func.log
+
+Removing PCR duplicates using R1 POSITION
+Not removing RT duplicates
+Filtering out dark regions in bam file...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/filter_black_regions.log
+
+Filtered blacklisted regions !
+Coverage - BedGraph... 
+
+Coverage - BigWigs... 
+
+Generate bigwig file(s) ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/bamCoverage.log
+
+Counting... 
+
+Generating counts table ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/make_counts.log
+
+at 50000 resolution ...
+at 5000 resolution ...
+at 250 resolution ...
+at BED/gencode.M25.annotation.merged.bed resolution ...
+MQC... 
+
+add_info_to_log ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1/logs/add_info_to_log.log
+
+14396421
+53136320
+78.69
+645039
+53136320
+87218
+0
+0
+0
+54529420
+0
+19.2548
+0.128579
+121547.0529
+52548842.5772
+465930.3698
+make metadata for mqc plots, done !
+Searching 3 files..
+
+Completed on Thu Jan 11 19:31:23 CET 2024 ! Results are available in /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T3_F8174_mm_multi_RNA_m11y23_H3K4me1
+

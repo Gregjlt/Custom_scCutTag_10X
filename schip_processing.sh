@@ -276,7 +276,7 @@ echo "Running pipeline for sample $NAME"
 
     mkdir -p ${ODIR}
     cd ${FASTQ_DIR}
-    cp -L $(ls | grep ${DATASET_NAME}) ${ODIR}
+    cp -L -R $(ls | grep ${DATASET_NAME}) ${ODIR}
     FASTQ_DIR=${ODIR}/
     cd ${ABS_BIN_PATH}
     

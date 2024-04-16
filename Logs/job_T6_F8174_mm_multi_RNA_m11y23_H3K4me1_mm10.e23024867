@@ -1,0 +1,23 @@
+
+real	10m0.818s
+user	9m31.941s
+sys	0m11.149s
+
+real	0m2.110s
+user	0m2.858s
+sys	0m0.301s
+//data/users/gjouault/GitLab/Custom_scCutTag_10X/scripts//make_metadata.sh: line 73: [: 79.48: integer expression expected
+[WARNING]         multiqc : MultiQC Version v1.19 now available!
+[INFO   ]         multiqc : This is MultiQC v1.4
+[INFO   ]         multiqc : Template    : default
+[INFO   ]         multiqc : Report title: T6_F8174_mm_multi_RNA_m11y23_H3K4me1
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T6_F8174_mm_multi_RNA_m11y23_H3K4me1/scChIPseq_table.csv'
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T6_F8174_mm_multi_RNA_m11y23_H3K4me1/scChIPseq_barcode.csv'
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T6_F8174_mm_multi_RNA_m11y23_H3K4me1/scChIPseq_alignments.csv'
+[INFO   ]  custom_content : scChIPseq_general_table: Found 1 samples (table)
+[INFO   ]  custom_content : scChIPseq_barcode: Found 1 samples (bargraph)
+[INFO   ]  custom_content : scChIPseq_alignments: Found 1 samples (bargraph)
+[INFO   ]         multiqc : Compressing plot data
+[INFO   ]         multiqc : Report      : ../../../../../data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/T6_F8174_mm_multi_RNA_m11y23_H3K4me1/T6_F8174_mm_multi_RNA_m11y23_H3K4me1_report.html
+[INFO   ]         multiqc : Data        : None
+[INFO   ]         multiqc : MultiQC complete

@@ -1,0 +1,78 @@
+Bonjour Greg!
+COMMAND Fastq+Barcoding+Trimming+Mapping+Filtering+Coverage+Counting+MQC+R_analysis 
+/data/kdi_prod/dataset/2018375/export/user/fastqs/J2_F8205_mm_multi_RNA_m11y23/ | /data/tmp/gjouault/results/CONFIG_MOUSE_scCutTag_10X_H3K27ME3_J2_F8205_mm_multi_RNA_m11y23 | /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1 | J2_F8205_mm_multi_RNA_m11y23_H3K4me1
+
+Starting on Thu Jan 11 15:19:17 CET 2024 scCutTag 10X pipeline ! Results are available in /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1
+
+Running pipeline for sample J2_F8205_mm_multi_RNA_m11y23_H3K4me1
+Concatenating Input Fastqs from 10X... 
+
+Concatenating Fastqs From 10X together...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/concatenate_fastqs_from_10X.log
+
+Barcoding... 
+
+Running Bowtie2 index (barcode) mapping ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/barcode/index_mapping_bowtie2.log
+
+Mapping using STAR... 
+
+Running STAR mapping ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/genome/mapping_star.log
+
+Filtering... 
+
+Running add_cellBarcode_func...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/add_cellBarcode_func.log
+
+Running remove_PCR_RT_duplicates_func...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/remove_PCR_RT_duplicates_func.log
+
+Removing PCR duplicates using R1 POSITION
+Not removing RT duplicates
+Filtering out dark regions in bam file...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/filter_black_regions.log
+
+Filtered blacklisted regions !
+Coverage - BedGraph... 
+
+Coverage - BigWigs... 
+
+Generate bigwig file(s) ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/bamCoverage.log
+
+Counting... 
+
+Generating counts table ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/make_counts.log
+
+at 50000 resolution ...
+at 5000 resolution ...
+at 250 resolution ...
+at BED/gencode.M25.annotation.merged.bed resolution ...
+MQC... 
+
+add_info_to_log ...
+Logs: /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1/logs/add_info_to_log.log
+
+43794462
+141884840
+76.41
+2432672
+141884840
+194708
+0
+0
+0
+145566130
+0
+21.6035
+0.104231
+445653.2076
+139303765.1720
+2135421.6202
+make metadata for mqc plots, done !
+Searching 3 files..
+
+Completed on Fri Jan 12 02:24:21 CET 2024 ! Results are available in /data/kdi_prod/project_result/1184/02.00/results/scCutTag/mm10/J2_F8205_mm_multi_RNA_m11y23_H3K4me1
+
