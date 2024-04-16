@@ -415,12 +415,12 @@ prefix=$3
     echo -e "Logs: $log"
     echo
 
-start_index_1=9
+start_index_1=1
 size_index=16
 
 ##Extract 1 barcode from reads : 1 - 16 = index 1
 if [[ ${read2} =~ \.gz ]]; then
-         cmd="gzip -cd  $read2 | awk -v start_index_1=$start_index_1 -v size_index=$size_index  'NR%4==1{print \">\"substr(\$1,2)}; NR%4==2{print \$0}' > ${out}/read_indexes_1.fasta"
+         cmd="gzip -cd  $read2 | awk -v start_index_1=$start_index_1 -v size_index=$size_index  'NR%4==1{print \">\"substr(\$1,2)}; NR%4==2{print substr(\$0, start_index_1,size_index)}' > ${out}/read_indexes_1.fasta"
      else
          cmd="cat $read2 | awk -v start_index_1=$start_index_1 -v size_index=$size_index  'NR%4==1{print \">\"substr(\$1,2)}; NR%4==2{print \$0}' > ${out}/read_indexes_1.fasta"
 

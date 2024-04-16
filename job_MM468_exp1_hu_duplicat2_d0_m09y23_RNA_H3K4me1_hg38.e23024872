@@ -1,0 +1,23 @@
+
+real	30m12.713s
+user	29m45.518s
+sys	0m11.891s
+
+real	0m4.255s
+user	0m9.935s
+sys	0m0.709s
+//data/users/gjouault/GitLab/Custom_scCutTag_10X/scripts//make_metadata.sh: line 73: [: 26.25: integer expression expected
+[WARNING]         multiqc : MultiQC Version v1.19 now available!
+[INFO   ]         multiqc : This is MultiQC v1.4
+[INFO   ]         multiqc : Template    : default
+[INFO   ]         multiqc : Report title: MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/hg38/MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1/scChIPseq_table.csv'
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/hg38/MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1/scChIPseq_barcode.csv'
+[INFO   ]         multiqc : Searching '/data/kdi_prod/project_result/1184/02.00/results/scCutTag/hg38/MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1/scChIPseq_alignments.csv'
+[INFO   ]  custom_content : scChIPseq_general_table: Found 1 samples (table)
+[INFO   ]  custom_content : scChIPseq_barcode: Found 1 samples (bargraph)
+[INFO   ]  custom_content : scChIPseq_alignments: Found 1 samples (bargraph)
+[INFO   ]         multiqc : Compressing plot data
+[INFO   ]         multiqc : Report      : ../../../../../data/kdi_prod/project_result/1184/02.00/results/scCutTag/hg38/MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1/MM468_exp1_hu_duplicat2_d0_m09y23_RNA_H3K4me1_report.html
+[INFO   ]         multiqc : Data        : None
+[INFO   ]         multiqc : MultiQC complete
