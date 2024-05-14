@@ -329,7 +329,7 @@ echo "Running pipeline for sample $NAME"
       GENOME_BAM_FLAGGED=${ODIR}/mapping/${PREFIX}_flagged.bam
       
       ## 5- Remove PCR and Reverse Transcription duplicate  - (STAR)
-      remove_PCR_RT_duplicates_func ${GENOME_BAM_FLAGGED} ${ODIR}/mapping ${LOGDIR}
+      remove_PCR_RT_duplicates_func_V2 ${GENOME_BAM_FLAGGED} ${ODIR}/mapping ${LOGDIR}
       GENOME_BAM_FLAGGED_rmPCR_RT=${ODIR}/mapping/${PREFIX}_flagged_rmPCR_RT.bam
       
       ## 6-Remove duplicates by window (if R2 is unmapped) - prime (STAR)
