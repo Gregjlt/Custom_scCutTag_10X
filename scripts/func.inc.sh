@@ -742,7 +742,7 @@ remove_PCR_RT_duplicates_func_V2(){
  
   echo -e "Removing PCR duplicates using R1 POSITION & R2 POSITION"
   #Remove PCR duplicates = read having same barcode, R1 position, same R2 POSITION, same chr ("exactly equal")
-  cmd="samtools view ${out_prefix}_flagged.sorted.bam | awk -v bc_field=$barcode_field -v out=${out} -v R2_field=${posR2_field}/ 'BEGIN{countPCR=0};NR==1{print \$0;lastChrom=\$3;lastBarcode=\$bc_field;lastR1Pos=\$4;split(\$R2_field,lastR2Pos,\":\")} ; NR>=2{split(\$R2_field,R2Pos,\":\");R1Pos=\$4; if( (R1Pos==lastR1Pos) && ( \$3==lastChrom ) && (\$bc_field==lastBarcode) && (R2Pos[3]==lastR2Pos[3]) ){countPCR++;next} {print \$0;lastR1Pos=\$4;lastChrom=\$3;lastBarcode=\$bc_field; split( \$R2_field,lastR2Pos,\":\") }} END {print countPCR > out\"count_PCR_duplicates\"}' > ${out_prefix}_flagged_rmPCR.sam"
+  cmd="samtools view ${out_prefix}_flagged.sorted.bam | awk -v bc_field=$barcode_field -v out=${out} -v R2_field=${posR2_field}/ 'BEGIN{countPCR=0};NR==1{print \$0;lastChrom=\$3;lastBarcode=\$bc_field;lastR1Pos=\$4;split(\$R2_field,lastR2Pos,\":\")} ; NR>=2{split(\$R2_field,R2Pos,\":\");R1Pos=\$4; if( (R1Pos==lastR1Pos) && ( \$3==lastChrom ) && (\$bc_field==lastBarcode) && (R2Pos[3]==lastR2Pos[3]) ){countPCR++;next} {print \$0;lastR1Pos=\$4;lastChrom=\$3;lastBarcode=\$bc_field; split( \$R2_field,lastR2Pos,\":\") }} END {print countPCR > \$out\"count_PCR_duplicates\"}' > ${out_prefix}_flagged_rmPCR.sam"
   exec_cmd ${cmd} >> $log 2>&1
   
   cmd="samtools view -H ${out_prefix}_flagged.sorted.bam  | sed '/^@CO/ d' > ${out_prefix}_header.sam"
