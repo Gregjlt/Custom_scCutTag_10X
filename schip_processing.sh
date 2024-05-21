@@ -287,7 +287,7 @@ echo "Running pipeline for sample $NAME"
     if [[  -n "${TO_RUN[Fastq]}" ]]; then
 
       echo -e "Concatenating Input Fastqs from 10X... \n"
-      concatenate_fastqs_from_10X ${FASTQ_DIR} ${ODIR}/fastqs ${PREFIX} ${LOGDIR}
+      concatenate_fastqs_from_10X ${FASTQ_DIR} ${ODIR}/fastqs ${DATASET_NAME} ${PREFIX} ${LOGDIR}
       # INDEX="${ODIR}/fastqs/${PREFIX}_toreverse.R2.fastq.gz"
       #  echo -e "Reversing the index fastq... \n"
       #   reverse_fastq_func ${ODIR} ${INDEX} ${PREFIX} ${LOGDIR}

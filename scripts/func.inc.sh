@@ -61,10 +61,11 @@ concatenate_fastqs_from_10X()
 { 
         fastq_dir=$1
         output_dir=$2
-        sample_name=$3
+        dataset_name=$3
+        sample_name=$4
 
 
-        local log=$4/concatenate_fastqs_from_10X.log
+        local log=$5/concatenate_fastqs_from_10X.log
 	echo -e "Concatenating Fastqs From 10X together..."
         echo -e "Logs: $log"
         echo
@@ -82,19 +83,19 @@ concatenate_fastqs_from_10X()
         cmd="rm -f ${output_dir}/${sample_name}.R3.fastq.gz"
         exec_cmd ${cmd} >> ${log} 2>&1
  
-        for i in $(ls ${fastq_dir}* | grep R1 | grep fastq.gz)
+        for i in $(ls ${fastq_dir}${dataset_name}* | grep R1 | grep fastq.gz)
         do
                 cmd="gzip -cd ${fastq_dir}*/${i} | gzip >> ${output_dir}/${sample_name}.R1.fastq.gz"
                 exec_cmd ${cmd} >> ${log} 2>&1
         done
 
-        for i in $(ls ${fastq_dir}* | grep I2 | grep fastq.gz)
+        for i in $(ls ${fastq_dir}${dataset_name}* | grep I2 | grep fastq.gz)
         do
                 cmd="gzip -cd ${fastq_dir}*/${i} | gzip >> ${output_dir}/${sample_name}.R2.fastq.gz"
                 exec_cmd ${cmd} >> ${log} 2>&1
         done
  
-        for i in $(ls ${fastq_dir}* | grep R2 | grep fastq.gz)
+        for i in $(ls ${fastq_dir}${dataset_name}* | grep R2 | grep fastq.gz)
         do
                 cmd="gzip -cd ${fastq_dir}*/${i} | gzip >> ${output_dir}/${sample_name}.R3.fastq.gz"
                 exec_cmd ${cmd} >> ${log} 2>&1
@@ -728,7 +729,7 @@ remove_PCR_RT_duplicates_func_V2(){
   
   #Sort by barcode then chromosome then position R1 (for the PCR removal) 
   #It is important to sort by R1 pos also because the removal is done by comparing consecutive lines ! 
-  cmd="samtools view ${out_prefix}_flagged.bam | LC_ALL=C sort -T ${TMP_DIR} --parallel=${NB_PROC} -t $'\t' -k \"$barcode_field.6\" -k 3.4,3g -k 4,4n >> ${out_prefix}_header.sam && samtools view -@ ${NB_PROC} -b ${out_prefix}_header.sam > ${out_prefix}_flagged.sorted.bam"
+  # cmd="samtools view ${out_prefix}_flagged.bam | LC_ALL=C sort -T ${TMP_DIR} --parallel=${NB_PROC} -t $'\t' -k \"$barcode_field.6\" -k 3.4,3g -k 4,4n >> ${out_prefix}_header.sam && samtools view -@ ${NB_PROC} -b ${out_prefix}_header.sam > ${out_prefix}_flagged.sorted.bam"
   # exec_cmd ${cmd} >> ${log} 2>&1
   
   # seule différence avec le scChIP + cutindrop = sort -k \"\$barcode_field.8\" qui n'est pas numérique (n) !!!!!!!!!!!!!!!
@@ -742,7 +743,7 @@ remove_PCR_RT_duplicates_func_V2(){
  
   echo -e "Removing PCR duplicates using R1 POSITION & R2 POSITION"
   #Remove PCR duplicates = read having same barcode, R1 position, same R2 POSITION, same chr ("exactly equal")
-  cmd="samtools view ${out_prefix}_flagged.sorted.bam | awk -v bc_field=$barcode_field -v out=${out}/ -v R2_field=${posR2_field}/ 'BEGIN{countPCR=0};NR==1{print \$0;lastChrom=\$3;lastBarcode=\$bc_field;lastR1Pos=\$4;split(\$R2_field,lastR2Pos,\":\")} ; NR>=2{split(\$R2_field,R2Pos,\":\");R1Pos=\$4; if( (R1Pos==lastR1Pos) && ( \$3==lastChrom ) && (\$bc_field==lastBarcode) && (R2Pos[3]==lastR2Pos[3]) ){countPCR++;next} {print \$0;lastR1Pos=\$4;lastChrom=\$3;lastBarcode=\$bc_field; split( \$R2_field,lastR2Pos,\":\") }} END {print countPCR > out\"count_PCR_duplicates\"}' > ${out_prefix}_flagged_rmPCR.sam"
+  cmd="samtools view ${out_prefix}_flagged.sorted.bam | awk -v bc_field=$barcode_field -v out=${out}/ -v R2_field=${posR2_field} 'BEGIN{countPCR=0};NR==1{print \$0;lastChrom=\$3;lastBarcode=\$bc_field;lastR1Pos=\$4;split(\$R2_field,lastR2Pos,\":\")} ; NR>=2{split(\$R2_field,R2Pos,\":\");R1Pos=\$4; if( (R1Pos==lastR1Pos) && ( \$3==lastChrom ) && (\$bc_field==lastBarcode) && (R2Pos[3]==lastR2Pos[3]) ){countPCR++;next} {print \$0;lastR1Pos=\$4;lastChrom=\$3;lastBarcode=\$bc_field; split( \$R2_field,lastR2Pos,\":\") }} END {print countPCR > out\"count_PCR_duplicates\"}' > ${out_prefix}_flagged_rmPCR.sam"
   exec_cmd ${cmd} >> $log 2>&1
   
   cmd="samtools view -H ${out_prefix}_flagged.sorted.bam  | sed '/^@CO/ d' > ${out_prefix}_header.sam"
